@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\OutletController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,4 +26,10 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('admin/index');
     })->name('dashboard');
+
+    Route::get('outlets',[OutletController::class,'allout'])->name('all.out');
+Route::post('outlets',[OutletController::class,'storeout'])->name('store.out');
+Route::get('outlets/{id}',[OutletController::class,'editout'])->name('edit.out');
+Route::post('outlets/update/{id}', [OutletController::class, 'update'])->name("update.out");
+Route::get('outlets/delete/{id}', [OutletController::class, 'delete'])->name("delete.out");
 });
