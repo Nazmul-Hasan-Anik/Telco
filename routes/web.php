@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\OutletController;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,9 +28,12 @@ Route::middleware([
         return view('admin/index');
     })->name('dashboard');
 
-    Route::get('outlets',[OutletController::class,'allout'])->name('all.out');
-Route::post('outlets',[OutletController::class,'storeout'])->name('store.out');
-Route::get('outlets/{id}',[OutletController::class,'editout'])->name('edit.out');
-Route::post('outlets/update/{id}', [OutletController::class, 'update'])->name("update.out");
-Route::get('outlets/delete/{id}', [OutletController::class, 'delete'])->name("delete.out");
+
+ Route::get('categories', [CategoryController::class,"index"]);
+   Route::get('add-categories', [CategoryController::class,"add"]);
+   Route::post('insert-categories', [CategoryController::class,"insert"]);
+   Route::get('edit_cat/{id}',[CategoryController::class,'edit'])->name('edit.cat');
+   Route::put('update_cat/{id}', [CategoryController::class, 'update']);
+   Route::get('delete_cat/{id}',[CategoryController::class,'delete'])->name('delete.cat');
+
 });
